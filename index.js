@@ -39,7 +39,9 @@ MusParser.prototype.init = function() {
 };
 
 MusParser.prototype.start = function(match) {
-  this.voice = match[2];
+  if (match[2]) {
+    this.voice = match[2];
+  }
 };
 
 MusParser.prototype.write = function(chunk) {
