@@ -1,8 +1,10 @@
+all: build
 
-REPORTER = spec
+build:
+	./node_modules/.bin/pegjs src/mus.txt.pegjs mus.txt.js
 
 test:
-	@NODE_ENV=test ./node_modules/.bin/mocha \
-    --reporter $(REPORTER)
+	
+	@./node_modules/.bin/mocha --reporter spec test/*.js
 
 .PHONY: test
