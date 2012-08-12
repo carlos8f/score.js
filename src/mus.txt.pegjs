@@ -3,7 +3,8 @@
     meta: {},
     parts: []
   },
-  measureBuffer = [];
+  measureBuffer = [],
+  keyChange = "do"
 }
 
 start
@@ -20,14 +21,14 @@ NL "newline"
 S "whitespace"
   = [ \r\n\t]
 
-W "word"
+W "identifier"
   = [^ \r\n\t|:]
 
 Meta "front-matter"
   = MetaDelim MetaLine* MetaDelim NL
 
 MetaLine "meta property"
-  = name:[^:\r\n]+ ": " value:[^\r\n]+ NL {
+  = name:W+ ": " value:[^\r\n]+ NL {
     ret.meta[name.join("")] = value.join("")
   }
 
@@ -40,7 +41,7 @@ Part "part"
   }
 
 PartName "part name"
-  = name:[^:\r\n]+ ": " {
+  = name:W+ ": " {
     return name.join("")
   }
 
@@ -54,23 +55,38 @@ StaffEnd "staff end"
 
 Measure "measure"
   = "|"+ repeatStart:":"?
+  Key?
   notes:Note+ " "
   repeatEnd:":"? &"|" {
-    return {
-      repeatStart: !!repeatStart,
-      notes: notes.join(" "),
-      repeatEnd: !!repeatEnd
+    var m = {
+      notes: notes
     }
+    if (keyChange) {
+      m.key = keyChange
+      keyChange = null
+    }
+    if (repeatStart) {
+      m.repeatStart = true
+    }
+    if (repeatEnd) {
+      m.repeatEnd = true
+    }
+    return m
   }
 
 Note "note"
-  = " " pitch:Syllable ( "," alterations:W+ )? "^"? &" " {
-    return {
-      pitch: pitch,
-      alterations: typeof alterations !== 'undefined' && alterations.join("")
+  = " " pitch:Syllable ( "," alterations:W+ )? tie:"^"? &" " {
+    var m = {
+      pitch: pitch
     }
+    if (typeof alterations !== "undefined") {
+      m.alterations = alterations.join("")
+    }
+    if (tie) {
+      m.tie = true
+    }
+    return m
   }
-  / Key
 
 Syllable "syllable"
   = (
@@ -96,8 +112,6 @@ Syllable "syllable"
   )
 
 Key "key signature"
-  = "(" key:Syllable ")" {
-    return {
-      key: key
-    }
+  = " (" key:Syllable ")" &" " {
+    keyChange = key
   }

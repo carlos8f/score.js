@@ -29,6 +29,6 @@ describe('basic test', function () {
 
     // Validate parts
     assert(isArray(parsed.parts), 'parts is array');
-    console.log('measures', parsed.parts[0].measures);
+    console.log('measures', JSON.stringify(parsed));
   });
 });
