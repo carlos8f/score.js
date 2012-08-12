@@ -14,7 +14,13 @@ describe('basic test', function () {
   });
 
   it('parses ok', function () {
-    var parsed = parser.parse(content);
+    try {
+      var parsed = parser.parse(content);
+    }
+    catch (e) {
+      console.error(e);
+      throw e;
+    }
 
     // Validate header
     assert.equal(parsed.meta.composer, 'J. S. Bach');
@@ -23,5 +29,6 @@ describe('basic test', function () {
 
     // Validate parts
     assert(isArray(parsed.parts), 'parts is array');
+    console.log('measures', parsed.parts[0].measures);
   });
 });
