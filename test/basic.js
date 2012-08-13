@@ -1,4 +1,4 @@
-var parser = require('../')
+var mus = require('../')
   , assert = require('assert')
   , fs = require('fs')
   , resolve = require('path').resolve
@@ -7,7 +7,7 @@ var parser = require('../')
 describe('basic test', function () {
   var content;
   before(function (done) {
-    fs.readFile(resolve(__dirname, './fixtures/66.6.txt'), 'utf8', function(err, data) {
+    fs.readFile(resolve(__dirname, './fixtures/66.6.txt'), 'utf8', function (err, data) {
       content = data;
       done();
     });
@@ -15,7 +15,7 @@ describe('basic test', function () {
 
   it('parses ok', function () {
     try {
-      var parsed = parser.parse(content);
+      var parsed = mus.parse(content);
     }
     catch (e) {
       console.error(e);
