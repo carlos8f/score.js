@@ -30,5 +30,7 @@ describe('util', function () {
     assert.equal(util.changePitch(62, 'do', 'mi'), 66);
     assert.equal(util.changePitch(65, 'do', 'fi'), 71);
     assert.equal(util.changePitch(65, 'do', 'sol'), 72);
+    assert.equal(util.changePitch(70, 'do', 'fi'), 76);
+    assert.equal(util.changePitch(55, 'le', 'fa'), 52);
   });
 });
