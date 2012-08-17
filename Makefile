@@ -5,6 +5,6 @@ build:
 
 test:
 	
-	@./node_modules/.bin/mocha --reporter spec test/*.js
+	@./node_modules/.bin/mocha --reporter spec test/*.js --timeout 10s
 
 .PHONY: build test

@@ -4,6 +4,7 @@ var parser = require('../')
   , resolve = require('path').resolve
   , isArray = require('util').isArray
   , spawn = require('child_process').spawn
+  , midistream = require('midi-stream');
 
 describe('stream test', function () {
   var content, parsed;
