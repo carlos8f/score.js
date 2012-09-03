@@ -3,8 +3,7 @@
     meta: {},
     parts: []
   },
-  measureBuffer = [],
-  keyChange = "do"
+  measureBuffer = []
 }
 
 start
@@ -55,15 +54,10 @@ StaffEnd "staff end"
 
 Measure "measure"
   = "|"+ repeatStart:":"?
-  Key?
-  notes:Note+ " "
+  events:Event+ " "
   repeatEnd:":"? &"|" {
     var m = {
-      notes: notes
-    }
-    if (keyChange) {
-      m.key = keyChange
-      keyChange = null
+      events: events
     }
     if (repeatStart) {
       m.repeatStart = true
@@ -74,16 +68,29 @@ Measure "measure"
     return m
   }
 
+Event "event"
+  = Note / Key
+
 Note "note"
-  = " " pitch:Syllable ( "," alterations:W+ )? tie:"^"? &" " {
+  = " " syllable:Syllable ( "," properties:W+ )? tie:"^"? &" " {
     var m = {
-      pitch: pitch
+      type: "note",
+      syllable: syllable
     }
-    if (typeof alterations !== "undefined") {
-      m.alterations = alterations.join("")
+    if (typeof properties !== "undefined") {
+      m.properties = properties.join("")
     }
     if (tie) {
       m.tie = true
+    }
+    return m
+  }
+
+Key "key signature"
+  = " (" key:Syllable ")" &" " {
+    var m = {
+      type: "key",
+      key: key
     }
     return m
   }
@@ -102,7 +109,6 @@ Syllable "syllable"
   / "fi"
   / "se"
   / "sol"
-  / "so"
   / "si"
   / "le"
   / "la"
@@ -110,8 +116,3 @@ Syllable "syllable"
   / "te"
   / "ti"
   )
-
-Key "key signature"
-  = " (" key:Syllable ")" &" " {
-    keyChange = key
-  }
