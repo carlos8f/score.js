@@ -2,32 +2,27 @@ var mus = require('../')
   , assert = require('assert')
   , fs = require('fs')
   , resolve = require('path').resolve
-  , isArray = require('util').isArray
 
 describe('basic test', function () {
-  var content;
-  before(function (done) {
+  it('parses', function (done) {
     fs.readFile(resolve(__dirname, './fixtures/66.6.txt'), 'utf8', function (err, data) {
-      content = data;
+      var parsed = mus.parse(data);
+      assert.deepEqual(parsed.meta, {
+        composer: 'J. S. Bach',
+        title: 'Christ ist erstanden',
+        form: 'chorale'
+      });
+      assert.equal(parsed.parts.length, 1);
       done();
     });
   });
 
-  it('parses ok', function () {
-    try {
-      var parsed = mus.parse(content);
-    }
-    catch (e) {
-      console.error(e);
-      throw e;
-    }
+  it('streams', function (done) {
+    var stream = mus.stream();
+    fs.createReadStream(resolve(__dirname, './fixtures/66.6.txt'), {encoding: 'utf8'}).pipe(stream);
 
-    // Validate header
-    assert.equal(parsed.meta.composer, 'J. S. Bach');
-    assert.equal(parsed.meta.title, 'Christ ist erstanden');
-    assert.equal(parsed.meta.form, 'chorale');
-
-    // Validate parts
-    assert(isArray(parsed.parts), 'parts is array');
+    stream.once('end', function () {
+      done();
+    });
   });
-});
+})

@@ -7,15 +7,17 @@
     "type": "git",
     "url": "git://github.com/carlos8f/node-mus.txt.git"
   },
+  "dependencies": {
+    "solfege": "0.0.0",
+    "midi-api": "~0.1.3",
+    "through": "~1.0.0"
+  },
   "devDependencies": {
     "mocha": "~1.3.2",
     "pegjs": "~0.7.0",
-    "mac-synth": "0.0.2"
+    "coremidi": "~0.0.2"
   },
   "engines": {
     "node": ">= 0.6.0"
-  },
-  "dependencies": {
-    "midi-stream": "0.0.0"
   }
 }
