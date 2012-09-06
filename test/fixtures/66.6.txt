@@ -4,6 +4,6 @@ title: Christ ist erstanden
 form: chorale
 ---
 
-soprano: || (la) mi,8 re | do,4 re mi,_ sol | mi re do,_ mi |
-| do,8 re ti,4 la,_ do | re re la sol | do re mi,_ mi | do re mi do |
-| ti la ti,2_ | la la,4 la^ | la la,8 si la,4_ ||
+soprano: ||: (la) mi/8 re | do/4 re mi/_ sol | mi re do/_ mi |
+| do/8 re ti/4 la/_ do | re re la sol | do re mi/_ mi | do re mi do |
+| ti la ti/_ | la la/4 la^ | la la/8 si la/4_ :||

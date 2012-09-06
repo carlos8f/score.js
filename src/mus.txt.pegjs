@@ -34,7 +34,7 @@ MetaLine "meta property"
 Part "part"
   = name:PartName? Staff+ {
     ret.parts.push({
-      name: name,
+      name: name || "part " + (ret.parts.length + 1),
       measures: measureBuffer
     })
   }
@@ -69,29 +69,91 @@ Measure "measure"
   }
 
 Event "event"
-  = Note / Key
+  = " " ev:( Time / Note / Rest / Key / Jump ) &" " {
+    return ev
+  }
 
 Note "note"
-  = " " syllable:Syllable ( "," properties:W+ )? tie:"^"? &" " {
+  = syllable:Syllable "/"? properties:Property* tie:"^"? {
     var m = {
       type: "note",
       syllable: syllable
     }
     if (typeof properties !== "undefined") {
-      m.properties = properties.join("")
-    }
-    if (tie) {
-      m.tie = true
+      properties.forEach(function (p) {
+        if (p.match(/^\d+$/)) {
+          m.duration = parseInt(p, 10)
+        }
+        else if (p === '_') {
+          m.fermata = true
+        }
+        else if (p === '^') {
+          m.tie = true
+        }
+      });
     }
     return m
   }
 
+Rest "rest"
+  = "-" "/"? duration:Num {
+    var m = {
+      type: "rest"
+    }
+    if (typeof duration !== "undefined") {
+      m.duration = duration
+    }
+    return m
+  }
+
+Property "property"
+  = ( Num / "_" / "^" )
+
+Num "number"
+  = (
+    "64"
+  / "32"
+  / "24"
+  / "16"
+  / "12"
+  / "9"
+  / "8"
+  / "7"
+  / "6"
+  / "5"
+  / "4"
+  / "3"
+  / "2"
+  / "1"
+  )
+
 Key "key signature"
-  = " (" key:Syllable ")" &" " {
+  = "(" syllable:Syllable ")" {
     var m = {
       type: "key",
-      key: key
+      key: syllable
     }
+    return m
+  }
+
+Time "time signature"
+  = "(" numerator:Num "/" denominator:Num ")" {
+    var m = {
+      type: "time",
+      time: [ parseInt(numerator, 10), parseInt(denominator, 10) ]
+    }
+    return m
+  }
+
+Jump "jump"
+  = ( down:"<"+ / up:">"+ ) {
+    var m = {
+      type: "jump",
+      value: 0
+    }
+    if (typeof down !== "undefined") m.value -= down.length * 12
+    if (typeof up !== "undefined") m.value += up.length * 12
+
     return m
   }
 

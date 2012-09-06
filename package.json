@@ -14,8 +14,7 @@
   },
   "devDependencies": {
     "mocha": "~1.3.2",
-    "pegjs": "~0.7.0",
-    "coremidi": "~0.0.2"
+    "pegjs": "~0.7.0"
   },
   "engines": {
     "node": ">= 0.6.0"

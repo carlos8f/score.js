@@ -3,23 +3,64 @@ var mus = require('../')
   , fs = require('fs')
   , resolve = require('path').resolve
 
-describe('basic test', function () {
+describe('basic', function () {
   it('parses', function (done) {
-    fs.readFile(resolve(__dirname, './fixtures/66.6.txt'), 'utf8', function (err, data) {
+    fs.readFile(resolve(__dirname, './fixtures/basic.txt'), 'utf8', function (err, data) {
       var parsed = mus.parse(data);
-      assert.deepEqual(parsed.meta, {
-        composer: 'J. S. Bach',
-        title: 'Christ ist erstanden',
-        form: 'chorale'
-      });
-      assert.equal(parsed.parts.length, 1);
+      var expected = {
+        "name": "part 1",
+        "measures": [
+          {
+            "events": [
+              {
+                "type": "note",
+                "syllable": "do"
+              },
+              {
+                "type": "note",
+                "syllable": "re"
+              },
+              {
+                "type": "note",
+                "syllable": "mi"
+              },
+              {
+                "type": "note",
+                "syllable": "fa"
+              }
+            ]
+          },
+          {
+            "events": [
+              {
+                "type": "note",
+                "syllable": "sol"
+              },
+              {
+                "type": "note",
+                "syllable": "la"
+              },
+              {
+                "type": "note",
+                "syllable": "ti"
+              },
+              {
+                "type": "note",
+                "syllable": "do"
+              }
+            ]
+          }
+        ]
+      };
+      assert.deepEqual(parsed.parts[0], expected);
+
       done();
     });
   });
 
   it('streams', function (done) {
     var stream = mus.stream();
-    fs.createReadStream(resolve(__dirname, './fixtures/66.6.txt'), {encoding: 'utf8'}).pipe(stream);
+    fs.createReadStream(resolve(__dirname, './fixtures/basic.txt'), {encoding: 'utf8'}).pipe(stream);
 
     stream.once('end', function () {
       done();

@@ -1,4 +1,5 @@
-exports.parse = require('./build/mus.txt').parse;
+var parser = require('./build/mus.txt');
+exports.parse = parser.parse.bind(parser);
 
 var through = require('through');
 
@@ -18,7 +19,6 @@ exports.stream = function () {
       stream.emit('error', e);
       stream.destroy();
     }
-    console.log(JSON.stringify(score.parts[0]));
     stream.emit('end');
   }
 
