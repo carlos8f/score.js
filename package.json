@@ -1,11 +1,22 @@
 {
   "author": "Carlos Rodriguez <carlos@s8f.org> (http://s8f.org/)",
-  "name": "mus.txt",
-  "description": "Parser for mus.txt notation",
+  "name": "score",
+  "description": "Text-based musical score parser for Node.js",
+  "keywords": [
+    "music",
+    "midi",
+    "writing",
+    "transcribe",
+    "musical",
+    "education",
+    "parser",
+    "solfege",
+    "solfeggio"
+  ],
   "version": "0.0.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/carlos8f/node-mus.txt.git"
+    "url": "git://github.com/carlos8f/score.js.git"
   },
   "dependencies": {
     "solfege": "0.0.0",
