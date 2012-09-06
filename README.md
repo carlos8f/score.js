@@ -1,4 +1,4 @@
-node-mus.txt
-============
+score.js
+========
 
-Node.js parser/stream for [mus.txt](https://github.com/carlos8f/mus.txt) notation
+Text-based musical scoring parser for Node.js
