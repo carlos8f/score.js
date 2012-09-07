@@ -1228,7 +1228,7 @@ module.exports = (function(){
           result0 = (function(offset, syllable) {
             var m = {
               type: "key",
-              key: syllable
+              syllable: syllable
             }
             return m
           })(pos0, result0[1]);

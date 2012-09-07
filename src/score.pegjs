@@ -131,7 +131,7 @@ Key "key signature"
   = "(" syllable:Syllable ")" {
     var m = {
       type: "key",
-      key: syllable
+      syllable: syllable
     }
     return m
   }

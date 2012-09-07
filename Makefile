@@ -1,7 +1,7 @@
 all: build
 
 build:
-	./node_modules/.bin/pegjs src/mus.txt.pegjs build/mus.txt.js
+	./node_modules/.bin/pegjs src/score.pegjs build/score.js
 
 test: build
 	

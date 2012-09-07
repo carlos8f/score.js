@@ -21,7 +21,7 @@
   "dependencies": {
     "solfege": "0.0.0",
     "midi-api": "~0.1.3",
-    "through": "~1.0.0"
+    "event-stream": "~3.0.4"
   },
   "devDependencies": {
     "mocha": "~1.3.2",

@@ -57,13 +57,4 @@ describe('basic', function () {
       done();
     });
   });
-
-  it('streams', function (done) {
-    var stream = mus.stream();
-    fs.createReadStream(resolve(__dirname, './fixtures/basic.txt'), {encoding: 'utf8'}).pipe(stream);
-
-    stream.once('end', function () {
-      done();
-    });
-  });
 })
