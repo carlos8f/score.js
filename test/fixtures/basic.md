@@ -1,0 +1,2 @@
+- do re mi fa
+- sol la ti do

@@ -1,7 +1,7 @@
 all: build
 
 build:
-	./node_modules/.bin/pegjs src/score.pegjs build/score.js
+	./node_modules/.bin/pegjs parser.pegjs
 
 test: build
 	

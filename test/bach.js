@@ -6,13 +6,14 @@ var score = require('../')
 
 describe('bach', function () {
   it('parses', function (done) {
-    fs.readFile(resolve(__dirname, '../examples/66.6.txt'), 'utf8', function (err, data) {
+    fs.readFile(resolve(__dirname, '../examples/66.6.md'), 'utf8', function (err, data) {
       var parsed = score.parse(data);
       assert.deepEqual(parsed.meta, {
         composer: 'J. S. Bach',
         title: 'Christ ist erstanden',
         form: 'chorale',
-        patch: '52'
+        key: "la",
+        patch: 52
       });
       assert.equal(parsed.parts.length, 4);
       done();

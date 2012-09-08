@@ -1,9 +1,24 @@
-var parser = require('./build/score')
+var yaml = require('js-yaml')
+  , parser = require('./parser')
   , midiapi = require('midi-api')
   , solfege = require('solfege')
   , es = require('event-stream')
 
-exports.parse = parser.parse.bind(parser);
+exports.parse = function (str) {
+  var ret = {
+    meta: {}
+  };
+  var metaSplit = str.split(/\s+\-\-\-\s+/), meta;
+  if (metaSplit.length > 1) {
+    if (metaSplit[0] === '') {
+      metaSplit.shift();
+    }
+    ret.meta = yaml.load(metaSplit.shift());
+    str = metaSplit.join('');
+  }
+  ret.parts = parser.parse(str);
+  return ret;
+};
 
 exports.render = function () {
   var stream = es.through(write, end)
@@ -34,7 +49,7 @@ exports.render = function () {
     var midi = midiapi()
       , pitch = 60
       , duration = 4
-      , bpm = parseInt(score.meta.bpm, 10) || 120
+      , bpm = score.meta.bpm || 120
       , measureTime
       , syllable = 'do'
 
@@ -48,7 +63,7 @@ exports.render = function () {
       .rest(500) // rest to allow the MIDI device to warm up
 
     function renderMeasure (measure) {
-      measure.events.forEach(function (ev) {
+      measure.forEach(function (ev) {
         var fn;
         switch (ev.type) {
           case 'time': fn = renderTime; break;
@@ -63,7 +78,7 @@ exports.render = function () {
 
     function renderPatch () {
       // @todo: enable per-part patch metadata
-      return parseInt(score.meta.patch || 0, 10);
+      return score.meta.patch || 0;
     }
 
     function renderTime (ev) {

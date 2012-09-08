@@ -6,53 +6,54 @@ var mus = require('../')
 describe('basic', function () {
   it('parses', function (done) {
     fs.readFile(resolve(__dirname, './fixtures/basic.txt'), 'utf8', function (err, data) {
-      var parsed = mus.parse(data);
       var expected = {
-        "name": "part 1",
-        "measures": [
+        "meta": {},
+        "parts": [
           {
-            "events": [
-              {
-                "type": "note",
-                "syllable": "do"
-              },
-              {
-                "type": "note",
-                "syllable": "re"
-              },
-              {
-                "type": "note",
-                "syllable": "mi"
-              },
-              {
-                "type": "note",
-                "syllable": "fa"
-              }
-            ]
-          },
-          {
-            "events": [
-              {
-                "type": "note",
-                "syllable": "sol"
-              },
-              {
-                "type": "note",
-                "syllable": "la"
-              },
-              {
-                "type": "note",
-                "syllable": "ti"
-              },
-              {
-                "type": "note",
-                "syllable": "do"
-              }
+            "name": "part 1",
+            "measures": [
+              [
+                {
+                  "type": "note",
+                  "syllable": "do"
+                },
+                {
+                  "type": "note",
+                  "syllable": "re"
+                },
+                {
+                  "type": "note",
+                  "syllable": "mi"
+                },
+                {
+                  "type": "note",
+                  "syllable": "fa"
+                }
+              ],
+              [
+                {
+                  "type": "note",
+                  "syllable": "sol"
+                },
+                {
+                  "type": "note",
+                  "syllable": "la"
+                },
+                {
+                  "type": "note",
+                  "syllable": "ti"
+                },
+                {
+                  "type": "note",
+                  "syllable": "do"
+                }
+              ]
             ]
           }
         ]
       };
-      assert.deepEqual(parsed.parts[0], expected);
+
+      assert.deepEqual(mus.parse(data), expected);
 
       done();
     });
