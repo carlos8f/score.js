@@ -11,9 +11,10 @@ describe('bach', function () {
       assert.deepEqual(parsed.meta, {
         composer: 'J. S. Bach',
         title: 'Christ ist erstanden',
-        form: 'chorale'
+        form: 'chorale',
+        patch: '52'
       });
-      assert.equal(parsed.parts.length, 1);
+      assert.equal(parsed.parts.length, 4);
       done();
     });
   });
