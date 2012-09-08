@@ -5,11 +5,11 @@ form: chorale
 patch: 52
 ---
 
-soprano: || (la) > mi/8 re | do/4 re mi/_ sol | mi re do/_ mi | do/8 re ti/4 la/_ do |
-| re re la sol | do re mi/_ mi | do re mi do | ti la ti/2_ |
+soprano: || (la) > mi/8 re | do/4 re mi_ sol | mi re do_ mi | do/8 re ti/4 la_ do |
+| re re la sol | do re mi_ mi | do re mi do | ti la ti/2_ |
 | la la/4 la^ | la la/8 si la/2_ ||
 
-alto: || (la) > sol | la sol sol_ sol | sol/8 do ti/4 sol/_ ti | la/8 ti si/4 mi/_ la |
+alto: || (la) > sol | la sol sol_ sol | sol/8 do ti/4 sol_ ti | la/8 ti si/4 mi_ la |
 | la sol fi mi | mi/8 la sol/4 sol_ do | la la ti la | la/8 si la < la > mi/2_ |
 | mi/8 fa sol/2 fa/8 mi | re mi fa/4 mi/2_ ||
 
