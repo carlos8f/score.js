@@ -10,7 +10,6 @@ exports.render = function () {
     , buf = ''
     , score
     , channel = 0
-    , partsEnded = 0
  
   function write (data) {
     buf += data;
@@ -26,24 +25,18 @@ exports.render = function () {
       stream.destroy();
       return;
     }
-    score.parts.forEach(render);
+    var merged = es.merge.apply(null, score.parts.map(render));
+    merged.on('data', stream.emit.bind(stream, 'data'));
+    merged.once('end', stream.emit.bind(stream, 'end'));
   }
 
   function render (part) {
     var midi = midiapi()
       , pitch = 60
       , duration = 4
-      , bpm = 60
+      , bpm = parseInt(score.meta.bpm, 10) || 120
       , measureTime
       , syllable = 'do'
-
-    // link with main stream
-    midi.on('data', stream.emit.bind(stream, 'data'));
-    midi.once('end', function () {
-      if (++partsEnded === score.parts.length) {
-        stream.emit('end');
-      }
-    });
 
     // Initial time of 4/4
     renderTime({time: [4, 4]});

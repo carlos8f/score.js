@@ -3,6 +3,7 @@ composer: J. S. Bach
 title: Christ ist erstanden
 form: chorale
 patch: 52
+bpm: 60
 ---
 
 soprano: || (la) > mi/8 re | do/4 re mi_ sol | mi re do_ mi | do/8 re ti/4 la_ do |
