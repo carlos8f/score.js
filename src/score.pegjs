@@ -37,6 +37,7 @@ Part "part"
       name: name || "part " + (ret.parts.length + 1),
       measures: measureBuffer
     })
+    measureBuffer = []
   }
 
 PartName "part name"
@@ -146,13 +147,13 @@ Time "time signature"
   }
 
 Jump "jump"
-  = ( down:"<"+ / up:">"+ ) {
+  = jump:( "<"+ / ">"+ ) {
     var m = {
       type: "jump",
       value: 0
     }
-    if (typeof down !== "undefined") m.value -= down.length * 12
-    if (typeof up !== "undefined") m.value += up.length * 12
+    if (~jump.indexOf("<")) m.value -= jump.length * 12;
+    else m.value += jump.length * 12
 
     return m
   }

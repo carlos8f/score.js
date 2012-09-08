@@ -449,6 +449,7 @@ module.exports = (function(){
               name: name || "part " + (ret.parts.length + 1),
               measures: measureBuffer
             })
+            measureBuffer = []
           })(pos0, result0[0]);
         }
         if (result0 === null) {
@@ -1385,16 +1386,16 @@ module.exports = (function(){
           }
         }
         if (result0 !== null) {
-          result0 = (function(offset) {
+          result0 = (function(offset, jump) {
             var m = {
               type: "jump",
               value: 0
             }
-            if (typeof down !== "undefined") m.value -= down.length * 12
-            if (typeof up !== "undefined") m.value += up.length * 12
+            if (~jump.indexOf("<")) m.value -= jump.length * 12;
+            else m.value += jump.length * 12
         
             return m
-          })(pos0);
+          })(pos0, result0);
         }
         if (result0 === null) {
           pos = pos0;

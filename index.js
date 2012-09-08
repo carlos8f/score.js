@@ -8,14 +8,17 @@ exports.parse = parser.parse.bind(parser);
 exports.render = function () {
   var stream = es.through(write, end)
     , buf = ''
-
+    , score
+    , channel = 0
+    , partsEnded = 0
+ 
   function write (data) {
     buf += data;
   }
 
   function end () {
     try {
-      var score = exports.parse(buf);
+      score = exports.parse(buf);
     }
     catch (e) {
       stream.emit('error', e);
@@ -23,26 +26,32 @@ exports.render = function () {
       stream.destroy();
       return;
     }
-
-    var merged = es.merge.apply(null, score.parts.map(render));
-    merged.on('data', stream.emit.bind(stream, 'data'));
-    merged.once('end', stream.emit.bind(stream, 'end'));
+    score.parts.forEach(render);
   }
 
   function render (part) {
     var midi = midiapi()
       , pitch = 60
-      , syllable = 'do'
       , duration = 4
       , bpm = 60
       , measureTime
+      , syllable = 'do'
+
+    // link with main stream
+    midi.on('data', stream.emit.bind(stream, 'data'));
+    midi.once('end', function () {
+      if (++partsEnded === score.parts.length) {
+        stream.emit('end');
+      }
+    });
 
     // Initial time of 4/4
     renderTime({time: [4, 4]});
 
     midi
+      .channel(channel++) // each part gets its own channel
       .bank(0)
-      .program(0) // @todo: allow patch metadata spec for part
+      .program(renderPatch())
       .rest(500) // rest to allow the MIDI device to warm up
 
     function renderMeasure (measure) {
@@ -57,6 +66,11 @@ exports.render = function () {
         }
         fn(ev); 
       });
+    }
+
+    function renderPatch () {
+      // @todo: enable per-part patch metadata
+      return parseInt(score.meta.patch || 0, 10);
     }
 
     function renderTime (ev) {
@@ -86,11 +100,13 @@ exports.render = function () {
       syllable = 'do';
     }
 
+    function renderJump (ev) {
+      pitch += ev.value;
+    }
+
     part.measures.forEach(renderMeasure);
     return midi;
   }
-
-  stream.on('data', console.log);
 
   return stream;
 };
