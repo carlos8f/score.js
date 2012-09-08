@@ -93,6 +93,14 @@ exports.render = function () {
         .noteOff()
         .noteOn(pitch)
         .rest(measureTime / duration)
+
+      // render a fermata
+      if (ev.fermata) {
+        midi
+          .rest(measureTime / duration)
+          .noteOff()
+          .rest(measureTime / duration / 2)
+      }
     }
 
     function renderKey (ev) {

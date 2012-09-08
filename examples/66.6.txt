@@ -5,18 +5,18 @@ form: chorale
 patch: 52
 ---
 
-soprano: ||: (la) > mi/8 re | do/4 re mi/_ sol | mi re do/_ mi | do/8 re ti/4 la/_ do |
-| re re la sol | do re mi/_ mi | do re mi do | ti la ti/_ |
-| la la/4 la^ | la la/8 si la/2_ :||
+soprano: || (la) > mi/8 re | do/4 re mi/_ sol | mi re do/_ mi | do/8 re ti/4 la/_ do |
+| re re la sol | do re mi/_ mi | do re mi do | ti la ti/2_ |
+| la la/4 la^ | la la/8 si la/2_ ||
 
-alto: ||: (la) > sol | la sol sol sol | sol/8 do ti/4 sol/_ ti | la/8 ti si/4 mi/_ la |
-| la sol fi mi | mi/8 la sol/4 sol do | la la ti la | la/8 si la < la > mi/2 |
-| mi/8 fa sol/2 fa/8 mi | re mi fa/4 mi/2 :||
+alto: || (la) > sol | la sol sol_ sol | sol/8 do ti/4 sol/_ ti | la/8 ti si/4 mi/_ la |
+| la sol fi mi | mi/8 la sol/4 sol_ do | la la ti la | la/8 si la < la > mi/2_ |
+| mi/8 fa sol/2 fa/8 mi | re mi fa/4 mi/2_ ||
 
-tenor: ||: (la) do/8 re | mi/4 re do re | do/8 > sol sol fa mi/4 mi | mi/8 fa mi re do/4 mi |
-| re re re/8 do ti/4 | la/8 > fa mi re do/4 > sol | fa fa mi mi | fa/8 mi/4 re/8 < si/2 |
-| la/4 > mi/2 re/8 di | re/4 re di/2 :||
+tenor: || (la) do/8 re | mi/4 re do_ re | do/8 > sol sol fa mi/4_ mi | mi/8 fa mi re do/4_ mi |
+| re re re/8 do ti/4 | la/8 > fa mi re do/4_ > sol | fa fa mi mi | fa/8 mi/4 re/8 < si/2_ |
+| la/4 > mi/2 re/8 di | re/4 re di/2_ ||
 
-bass: ||: (la) do/8 ti | la/4 ti do ti | do/8 < mi sol/4 < do > si | la/8 < re mi/4 < la > la |
-| ti/8 la ti do re < re mi/4 | la ti do do | fa re < si la | < re/8 mi fa/4 mi/2 |
-| di/2 re/4 mi | fa re > la/2 :||
+bass: || (la) do/8 ti | la/4 ti do_ ti | do/8 < mi sol/4 < do/_ > si | la/8 < re mi/4 < la_ > la |
+| ti/8 la ti do re < re mi/4 | la ti do_ do | fa re < si la | < re/8 mi fa/4 mi/2_ |
+| di/2 re/4 mi | fa re > la/2_ ||
