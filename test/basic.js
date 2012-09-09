@@ -5,7 +5,7 @@ var mus = require('../')
 
 describe('basic', function () {
   it('parses', function (done) {
-    fs.readFile(resolve(__dirname, './fixtures/basic.txt'), 'utf8', function (err, data) {
+    fs.readFile(resolve(__dirname, './fixtures/basic.md'), 'utf8', function (err, data) {
       var expected = {
         "meta": {},
         "parts": [

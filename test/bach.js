@@ -13,7 +13,8 @@ describe('bach', function () {
         title: 'Christ ist erstanden',
         form: 'chorale',
         key: "la",
-        patch: 52
+        patch: 52,
+        bpm: 60
       });
       assert.equal(parsed.parts.length, 4);
       done();

@@ -59,25 +59,52 @@ Event "event"
   }
 
 Note "note"
-  = syllable:Syllable "/"? properties:Property* tie:"^"? {
+  = syllable:Syllable props:Properties? {
     var m = {
       type: "note",
       syllable: syllable
     }
-    if (typeof properties !== "undefined") {
-      properties.forEach(function (p) {
-        if (p.match(/^\d+$/)) {
-          m.duration = parseInt(p, 10)
-        }
-        else if (p === "_") {
-          m.fermata = true
-        }
-        else if (p === "^") {
-          m.tie = true
-        }
-      });
+    if (typeof props === "object") {
+      Object.keys(props).forEach(function (k) {
+        m[k] = props[k]
+      })
     }
+
     return m
+  }
+
+Properties "properties"
+  = "/"? props:( Duration / Fermata / Dot / Tie )+ {
+    var m = {}
+    props.forEach(function (prop) {
+      m[prop.name] = prop.value;
+    });
+    return m
+  }
+
+Duration "duration"
+  = duration:Num {
+    return { name: "duration", value: duration }
+  }
+
+Fermata "fermata"
+  = "_" {
+    return { name: "fermata", value: true }
+  }
+
+Dot "dot"
+  = dot:"."+ {
+    return { name: "dot", value: dot.length }
+  }
+
+Tie "tie"
+  = "^" {
+    return { name: "tie", value: true }
+  }
+
+Num "number"
+  = digit:( "0" / "1" / "2" / "3" / "4" / "5" / "6" / "7" / "8" / "9" )+ {
+    return parseInt(digit.join(""), 10)
   }
 
 Rest "rest"
@@ -86,17 +113,9 @@ Rest "rest"
       type: "rest"
     }
     if (typeof duration !== "undefined") {
-      m.duration = duration
+      m.duration = parseInt(duration, 10)
     }
     return m
-  }
-
-Property "property"
-  = ( Num / "_" / "^" )
-
-Num "number"
-  = digit:( "0" / "1" / "2" / "3" / "4" / "5" / "6" / "7" / "8" / "9" )+ {
-    return digit.join("")
   }
 
 Key "key signature"
