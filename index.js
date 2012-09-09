@@ -52,14 +52,20 @@ exports.render = function () {
       , bpm = score.meta.bpm || 120
       , measureTime
       , syllable = 'do'
+      , patch = score.meta.patch || 0
 
-    // Initial time of 4/4
-    renderTime({time: [4, 4]});
+    // Initial time
+    renderTime({time: score.meta.time ? score.meta.time.split(/\s*\/\s*/).map(function (k) {
+      return parseInt(k, 10);
+    }) : [4, 4]});
+
+    // Initial key
+    renderKey({syllable: score.meta.key || 'do'});
 
     midi
       .channel(channel++) // each part gets its own channel
       .bank(0)
-      .program(renderPatch())
+      .program(patch)
       .rest(500) // rest to allow the MIDI device to warm up
 
     function renderMeasure (measure) {
@@ -74,11 +80,6 @@ exports.render = function () {
         }
         fn(ev); 
       });
-    }
-
-    function renderPatch () {
-      // @todo: enable per-part patch metadata
-      return score.meta.patch || 0;
     }
 
     function renderTime (ev) {
@@ -109,6 +110,15 @@ exports.render = function () {
           .noteOff()
           .rest(measureTime / duration / 2)
       }
+    }
+
+    function renderRest (ev) {
+      // apply duration
+      if (ev.duration) {
+        duration = ev.duration;
+      }
+
+      midi.rest(measureTime / duration);
     }
 
     function renderKey (ev) {
