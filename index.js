@@ -49,15 +49,16 @@ exports.render = function () {
     var midi = midiapi()
       , pitch = 60
       , duration = 4
+      , time = score.meta.time ? score.meta.time.split(/\s*\/\s*/).map(function (k) {
+          return parseInt(k, 10);
+        }) : [4, 4]
       , bpm = score.meta.bpm || 120
-      , measureTime
+      , beatTime
       , syllable = 'do'
       , patch = score.meta.patch || 0
 
     // Initial time
-    renderTime({time: score.meta.time ? score.meta.time.split(/\s*\/\s*/).map(function (k) {
-      return parseInt(k, 10);
-    }) : [4, 4]});
+    renderTime({time: time});
 
     // Initial key
     renderKey({syllable: score.meta.key || 'do'});
@@ -83,8 +84,16 @@ exports.render = function () {
     }
 
     function renderTime (ev) {
-      // length of one beat multiplied by number of beats
-      measureTime = (60000 / bpm) * ev.time[0];
+      // find the length of one beat in ms.
+      beatTime = 60000 / bpm;
+    }
+
+    function getTime (duration) {
+      // given a duration number, get the time (ms) relative to the time signature.
+      if (duration === 1) {
+        return beatTime * time[0];
+      }
+      return (time[1] / duration) * beatTime;
     }
 
     function renderNote (ev) {
@@ -97,18 +106,20 @@ exports.render = function () {
         duration = ev.duration;
       }
 
+      var noteTime = getTime(duration);
+
       // Send MIDI events
       midi
         .noteOff()
         .noteOn(pitch)
-        .rest(measureTime / duration)
+        .rest(noteTime)
 
       // render a fermata
       if (ev.fermata) {
         midi
-          .rest(measureTime / duration)
+          .rest(noteTime) // double the time
           .noteOff()
-          .rest(measureTime / duration / 2)
+          .rest(noteTime / 2) // with some rest at the end
       }
     }
 
@@ -118,7 +129,7 @@ exports.render = function () {
         duration = ev.duration;
       }
 
-      midi.rest(measureTime / duration);
+      midi.rest(getTime(duration));
     }
 
     function renderKey (ev) {
