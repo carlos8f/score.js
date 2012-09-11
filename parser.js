@@ -1307,6 +1307,7 @@ module.exports = (function(){
           result1 = result1 !== null ? result1 : "";
           if (result1 !== null) {
             result2 = parse_Num();
+            result2 = result2 !== null ? result2 : "";
             if (result2 !== null) {
               result0 = [result0, result1, result2];
             } else {

@@ -108,7 +108,7 @@ Num "number"
   }
 
 Rest "rest"
-  = "-" "/"? duration:Num {
+  = "-" "/"? duration:Num? {
     var m = {
       type: "rest"
     }
