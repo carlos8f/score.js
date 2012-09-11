@@ -3,7 +3,7 @@ composer: J. S. Bach
 title: Invention No. 8
 form: invention
 key: fa
-patch: 6
+patch: 0
 bpm: 100
 time: 3/4
 ---
