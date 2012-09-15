@@ -5,18 +5,19 @@ var yaml = require('js-yaml')
   , es = require('event-stream')
 
 exports.parse = function (str) {
-  var ret = {
-    meta: {}
-  };
-  var metaSplit = str.split(/\s+\-\-\-\s+/), meta;
-  if (metaSplit.length > 1) {
-    if (metaSplit[0] === '') {
-      metaSplit.shift();
-    }
-    ret.meta = yaml.load(metaSplit.shift());
-    str = metaSplit.join('');
+  var ret = parser.parse(str + "\n");
+
+  function parseMeta (obj) {
+    var meta = yaml.load(obj.meta || '') || {};
+    Object.keys(meta).forEach(function (k) {
+      obj[k] = meta[k];
+    });
+    delete obj.meta;
   }
-  ret.parts = parser.parse(str);
+
+  parseMeta(ret);
+  ret.parts.forEach(parseMeta);
+
   return ret;
 };
 
@@ -46,22 +47,27 @@ exports.render = function () {
   }
 
   function render (part) {
+    Object.keys(score).forEach(function (k) {
+      if (k !== 'parts' && typeof part[k] === 'undefined') {
+        part[k] = score[k];
+      }
+    });
     var midi = midiapi()
       , pitch = 60
       , duration = 4
-      , time = score.meta.time ? score.meta.time.split(/\s*\/\s*/).map(function (k) {
+      , time = part.time ? part.time.split(/\s*\/\s*/).map(function (k) {
           return parseInt(k, 10);
         }) : [4, 4]
-      , bpm = score.meta.bpm || 120
+      , bpm = part.bpm || 120
       , beatTime
       , syllable = 'do'
-      , patch = score.meta.patch || 0
+      , patch = part.patch || 0
 
     // Initial time
     renderTime({time: time});
 
     // Initial key
-    renderKey({syllable: score.meta.key || 'do'});
+    renderKey({syllable: part.key || 'do'});
 
     midi
       .channel(channel++) // each part gets its own channel

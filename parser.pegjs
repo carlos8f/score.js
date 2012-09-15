@@ -3,13 +3,27 @@
 }
 
 start
-  = Part+
+  = meta:Meta? parts:Part+ {
+    var ret = {
+      parts: parts,
+      meta: ""
+    }
+    if (typeof meta !== "undefined") {
+      ret.meta = meta
+    }
+    return ret
+  }
 
 NL "newline"
   = "\r"? "\n"
 
 S "whitespace"
   = [ \r\n\t]
+
+Meta "meta"
+  = S* ( "```" / "---" ) NL content:[^`]+ ( "```" / "---" ) S* {
+    return content.join("")
+  }
 
 Syllable "syllable"
   = (
@@ -34,12 +48,16 @@ Syllable "syllable"
   )
 
 Part "part"
-  = name:Header? measures:Measure+ S* {
+  = name:Header? meta:Meta? measures:Measure+ S* {
     partCount++
     var ret = {}
     if (typeof name !== "undefined" && name !== "") ret.name = name
     else ret.name = "part " + partCount
     ret.measures = measures
+    ret.meta = ""
+    if (typeof meta !== "undefined") {
+      ret.meta = meta
+    }
     return ret
   }
 
@@ -50,7 +68,7 @@ Header "header"
 
 Measure "measure"
   = [ \t]* ( ( Num+ "." ) / "-" ) events:Event+ NL {
-    return events;
+    return events
   }
 
 Event "event"
@@ -77,8 +95,8 @@ Properties "properties"
   = "/"? props:( Duration / Fermata / Dot / Tie )+ {
     var m = {}
     props.forEach(function (prop) {
-      m[prop.name] = prop.value;
-    });
+      m[prop.name] = prop.value
+    })
     return m
   }
 
@@ -142,7 +160,7 @@ Jump "jump"
       type: "jump",
       value: 0
     }
-    if (~jump.indexOf("<")) m.value -= jump.length * 12;
+    if (~jump.indexOf("<")) m.value -= jump.length * 12
     else m.value += jump.length * 12
 
     return m
