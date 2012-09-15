@@ -11,11 +11,8 @@ module.exports = function (url, program) {
       .pipe(require('coremidi')())
   }
 
-  if (fs.existsSync(url)) {
-    play(fs.createReadStream(url, {encoding: 'utf8'}));
-  }
-  else if (url.match(/^[0-9a-f]+$/)) {
-    request({url: 'https://api.github.com/gists/' + url, json: true}, function (err, res, data) {
+  function playGist (id) {
+    request({url: 'https://api.github.com/gists/' + id, json: true}, function (err, res, data) {
       if (res.statusCode !== 200) {
         err = new Error('github returned status code ' + res.statusCode);
       }
@@ -26,6 +23,17 @@ module.exports = function (url, program) {
       url = data.files[Object.keys(data.files)[0]].raw_url;
       play(request(url));
     });
+  }
+
+  if (fs.existsSync(url)) {
+    play(fs.createReadStream(url, {encoding: 'utf8'}));
+  }
+  else if (url.match(/^[0-9a-f]+$/)) {
+    playGist(url);
+  }
+  else if (url.match(/https:\/\/gist\.github\.com\/([0-9a-f]+)/)) {
+    var matches = url.match(/https:\/\/gist\.github\.com\/([0-9a-f]+)/);
+    playGist(matches[1]);
   }
   else if (url.match(/^http/)) {
     play(request(url));
