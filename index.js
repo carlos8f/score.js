@@ -61,7 +61,7 @@ exports.render = function () {
       , bpm = part.bpm || 120
       , beatTime
       , syllable = 'do'
-      , patch = part.patch || 0
+      , velocity
 
     // Initial time
     renderTime({time: time});
@@ -69,10 +69,13 @@ exports.render = function () {
     // Initial key
     renderKey({syllable: part.key || 'do'});
 
+    // Initial velocity
+    renderDynamics({value: 'mf'});
+
     midi
-      .channel(channel++) // each part gets its own channel
-      .bank(0)
-      .program(patch)
+      .channel(part.channel || channel++) // each part gets its own channel
+      .bank(part.bank || 0)
+      .program(part.patch || 0)
       .rest(500) // rest to allow the MIDI device to warm up
 
     function renderMeasure (measure) {
@@ -84,6 +87,9 @@ exports.render = function () {
           case 'rest': fn = renderRest; break;
           case 'key': fn = renderKey; break;
           case 'jump': fn = renderJump; break;
+          case 'dynamics': fn = renderDynamics; break;
+          case 'chord': fn = renderChord; break;
+          case 'sustain': fn = renderSustain; break;
         }
         fn(ev); 
       });
@@ -117,15 +123,11 @@ exports.render = function () {
       // Send MIDI events
       midi
         .noteOff()
-        .noteOn(pitch)
+        .noteOn(pitch, velocity)
         .rest(noteTime)
 
-      // render a fermata
       if (ev.fermata) {
-        midi
-          .rest(noteTime) // double the time
-          .noteOff()
-          .rest(noteTime / 2) // with some rest at the end
+        renderFermata();
       }
     }
 
@@ -136,6 +138,18 @@ exports.render = function () {
       }
 
       midi.rest(getTime(duration));
+
+      if (ev.fermata) {
+        renderFermata();
+      }
+    }
+
+    function renderFermata () {
+      var noteTime = getTime(duration);
+      midi
+        .rest(noteTime) // double the time
+        .noteOff()
+        .rest(noteTime / 2) // with some rest at the end
     }
 
     function renderKey (ev) {
@@ -147,9 +161,65 @@ exports.render = function () {
       pitch += ev.value;
     }
 
+    function renderDynamics (ev) {
+      velocity = exports.dynamicsMap[ev.value];
+    }
+
+    function renderSustain (ev) {
+      midi.control(40, ev.value ? 127 : 0)
+    }
+
+    function renderChord (ev) {
+      var rootPitch, rootSyllable;
+
+      midi.noteOff();
+
+      ev.events.forEach(function (ev) {
+        if (ev.type === 'jump') {
+          pitch += ev.value;
+        }
+        else if (ev.type === 'note') {
+          pitch += solfege.moveTo(syllable, ev.syllable);
+          syllable = ev.syllable;
+          if (!rootPitch) {
+            rootPitch = pitch;
+            rootSyllable = syllable;
+          }
+          midi.noteOn(pitch, velocity);
+        }
+      });
+
+      // apply duration
+      if (ev.duration) {
+        duration = ev.duration;
+      }
+
+      var noteTime = getTime(duration);
+
+      midi.rest(noteTime);
+
+      if (ev.fermata) {
+        renderFermata();
+      }
+
+      pitch = rootPitch;
+      syllable = rootSyllable;
+    }
+
     part.measures.forEach(renderMeasure);
     return midi;
   }
 
   return stream;
+};
+
+exports.dynamicsMap = {
+  ppp: 24,
+  pp: 44,
+  p: 54,
+  mp: 64,
+  mf: 74,
+  f: 84,
+  ff: 94,
+  fff: 114
 };
