@@ -166,7 +166,7 @@ exports.render = function () {
     }
 
     function renderSustain (ev) {
-      midi.control(40, ev.value ? 127 : 0)
+      midi.control(0x40, ev.value ? 127 : 0);
     }
 
     function renderChord (ev) {
