@@ -72,7 +72,7 @@ Measure "measure"
   }
 
 Event "event"
-  = " " ev:( Time / Note / Rest / Key / Jump ) &" "* {
+  = " " ev:( Time / Note / Chord / Rest / Key / Jump / Sustain / Dynamics ) &" "* {
     return ev
   }
 
@@ -138,20 +138,18 @@ Rest "rest"
 
 Key "key signature"
   = "(" syllable:Syllable ")" {
-    var m = {
+    return {
       type: "key",
       syllable: syllable
     }
-    return m
   }
 
 Time "time signature"
   = "(" numerator:Num "/" denominator:Num ")" {
-    var m = {
+    return {
       type: "time",
       time: [ parseInt(numerator, 10), parseInt(denominator, 10) ]
     }
-    return m
   }
 
 Jump "jump"
@@ -163,5 +161,35 @@ Jump "jump"
     if (~jump.indexOf("<")) m.value -= jump.length * 12
     else m.value += jump.length * 12
 
+    return m
+  }
+
+Sustain "sustain"
+  = sustain:( "[" / "]" ) {
+    return {
+      type: "sustain",
+      value: ~sustain.indexOf("[") ? true : false
+    }
+  }
+
+Dynamics "dynamics"
+  = "(" value:( "p"+ / "mp" / "mf" / "f"+ ) ")" {
+    return {
+      type: "dynamics",
+      value: typeof value === "string" ? value : value.join("")
+    }
+  }
+
+Chord "chord"
+  = "(" events:Event+ " )" props:Properties? {
+    var m = {
+      type: "chord",
+      events: events
+    }
+    if (typeof props === "object") {
+      Object.keys(props).forEach(function (k) {
+        m[k] = props[k]
+      })
+    }
     return m
   }
