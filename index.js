@@ -113,22 +113,12 @@ exports.render = function () {
       pitch += solfege.moveTo(syllable, ev.syllable);
       syllable = ev.syllable;
 
-      // apply duration
-      if (ev.duration) {
-        duration = ev.duration;
-      }
-
-      var noteTime = getTime(duration);
-
       // Send MIDI events
       midi
         .noteOff()
         .noteOn(pitch, velocity)
-        .rest(noteTime)
 
-      if (ev.fermata) {
-        renderFermata();
-      }
+      renderRest(ev);
     }
 
     function renderRest (ev) {
@@ -137,19 +127,24 @@ exports.render = function () {
         duration = ev.duration;
       }
 
-      midi.rest(getTime(duration));
+      var noteTime = getTime(duration);
+
+      if (ev.dot) {
+        var dots = ev.dot, noteAdjust = noteTime;
+        while (dots--) {
+          noteAdjust /= 2;
+          noteTime += noteAdjust;
+        }
+      }
+
+      midi.rest(noteTime);
 
       if (ev.fermata) {
-        renderFermata();
+        midi
+          .rest(noteTime) // double the time
+          .noteOff()
+          .rest(noteTime / 2) // with some rest at the end
       }
-    }
-
-    function renderFermata () {
-      var noteTime = getTime(duration);
-      midi
-        .rest(noteTime) // double the time
-        .noteOff()
-        .rest(noteTime / 2) // with some rest at the end
     }
 
     function renderKey (ev) {
