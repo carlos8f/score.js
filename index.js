@@ -111,12 +111,9 @@ exports.render = function () {
     function renderNote (ev) {
       // apply pitch adjustment and update current syllable
       pitch += solfege.moveTo(syllable, ev.syllable);
-      syllable = ev.syllable;
+      syllable = ev.syllable
 
-      // Send MIDI events
-      midi
-        .noteOff()
-        .noteOn(pitch, velocity)
+      midi.noteOn(pitch, velocity)
 
       renderRest(ev);
     }
@@ -138,6 +135,10 @@ exports.render = function () {
       }
 
       midi.rest(noteTime);
+
+      if (!ev.tie) {
+        midi.noteOff();
+      }
 
       if (ev.fermata) {
         midi
@@ -167,8 +168,6 @@ exports.render = function () {
     function renderChord (ev) {
       var rootPitch, rootSyllable;
 
-      midi.noteOff();
-
       ev.events.forEach(function (ev) {
         if (ev.type === 'jump') {
           pitch += ev.value;
@@ -184,18 +183,7 @@ exports.render = function () {
         }
       });
 
-      // apply duration
-      if (ev.duration) {
-        duration = ev.duration;
-      }
-
-      var noteTime = getTime(duration);
-
-      midi.rest(noteTime);
-
-      if (ev.fermata) {
-        renderFermata();
-      }
+      renderRest(ev);
 
       pitch = rootPitch;
       syllable = rootSyllable;
