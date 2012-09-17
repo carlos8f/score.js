@@ -262,26 +262,26 @@ module.exports = (function(){
           if (result1 !== null) {
             result2 = parse_NL();
             if (result2 !== null) {
-              if (/^[^`]/.test(input.charAt(pos))) {
+              if (/^[^`\-]/.test(input.charAt(pos))) {
                 result4 = input.charAt(pos);
                 pos++;
               } else {
                 result4 = null;
                 if (reportFailures === 0) {
-                  matchFailed("[^`]");
+                  matchFailed("[^`\\-]");
                 }
               }
               if (result4 !== null) {
                 result3 = [];
                 while (result4 !== null) {
                   result3.push(result4);
-                  if (/^[^`]/.test(input.charAt(pos))) {
+                  if (/^[^`\-]/.test(input.charAt(pos))) {
                     result4 = input.charAt(pos);
                     pos++;
                   } else {
                     result4 = null;
                     if (reportFailures === 0) {
-                      matchFailed("[^`]");
+                      matchFailed("[^`\\-]");
                     }
                   }
                 }

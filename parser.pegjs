@@ -21,7 +21,7 @@ S "whitespace"
   = [ \r\n\t]
 
 Meta "meta"
-  = S* ( "```" / "---" ) NL content:[^`]+ ( "```" / "---" ) S* {
+  = S* ( "```" / "---" ) NL content:[^`-]+ ( "```" / "---" ) S* {
     return content.join("")
   }
 
