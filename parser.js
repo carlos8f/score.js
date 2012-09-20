@@ -1466,7 +1466,7 @@ module.exports = (function(){
       }
       
       function parse_Rest() {
-        var result0, result1, result2;
+        var result0, result1;
         var pos0, pos1;
         
         reportFailures++;
@@ -1482,25 +1482,10 @@ module.exports = (function(){
           }
         }
         if (result0 !== null) {
-          if (input.charCodeAt(pos) === 47) {
-            result1 = "/";
-            pos++;
-          } else {
-            result1 = null;
-            if (reportFailures === 0) {
-              matchFailed("\"/\"");
-            }
-          }
+          result1 = parse_Properties();
           result1 = result1 !== null ? result1 : "";
           if (result1 !== null) {
-            result2 = parse_Num();
-            result2 = result2 !== null ? result2 : "";
-            if (result2 !== null) {
-              result0 = [result0, result1, result2];
-            } else {
-              result0 = null;
-              pos = pos1;
-            }
+            result0 = [result0, result1];
           } else {
             result0 = null;
             pos = pos1;
@@ -1510,15 +1495,17 @@ module.exports = (function(){
           pos = pos1;
         }
         if (result0 !== null) {
-          result0 = (function(offset, duration) {
+          result0 = (function(offset, props) {
             var m = {
               type: "rest"
             }
-            if (typeof duration !== "undefined") {
-              m.duration = parseInt(duration, 10)
+            if (typeof props === "object") {
+              Object.keys(props).forEach(function (k) {
+                m[k] = props[k]
+              })
             }
             return m
-          })(pos0, result0[2]);
+          })(pos0, result0[1]);
         }
         if (result0 === null) {
           pos = pos0;

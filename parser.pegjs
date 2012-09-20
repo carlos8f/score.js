@@ -126,12 +126,14 @@ Num "number"
   }
 
 Rest "rest"
-  = "-" "/"? duration:Num? {
+  = "-" props:Properties? {
     var m = {
       type: "rest"
     }
-    if (typeof duration !== "undefined") {
-      m.duration = parseInt(duration, 10)
+    if (typeof props === "object") {
+      Object.keys(props).forEach(function (k) {
+        m[k] = props[k]
+      })
     }
     return m
   }
