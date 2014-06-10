@@ -1,14 +1,11 @@
-```
-title: Twin Peaks
-key: fa
-bpm: 74
-```
+# Twin Peaks
 
-### guitar
+- key of fa
+- 74 bpm
 
-```
-patch: 27
-```
+## guitar
+
+- patch 27
 
 1. (fff) << do/2.. sol/8
 2. la/2.. sol/8
@@ -24,11 +21,9 @@ patch: 27
 12. < sol/1
 13. do/1
 
-### guitar double
+## guitar double
 
-```
-patch: 88
-```
+- patch 88
 
 1. (f) << do/2.. sol/8
 2. la/2.. sol/8
@@ -44,22 +39,18 @@ patch: 88
 12. < sol/1
 13. do/1
 
-### electric piano
+## electric piano
 
-```
-patch: 4
-```
+- patch 4
 
 1. - (mf) [ ( re mi sol )/2 do/4 ]
 2. - [ ( ti do mi )/2 la/4 ]
 3. - [ ( re mi sol )/2 do/4 ]
 4. - [ ( ti do mi )/2 la/4 ]
 
-### string pad
+## string pad
 
-```
-patch: 48
-```
+- patch 48
 
 1. -/1
 2. -
@@ -75,11 +66,9 @@ patch: 48
 12. -/1
 13. (mf) ( do > sol > re )/1
 
-### string melody
+## string melody
 
-```
-patch: 49
-```
+- patch 49
 
 1. -/1
 2. -
@@ -95,11 +84,9 @@ patch: 49
 12. re/2 mi/4 fa
 13. sol/1
 
-### melody harmony
+## melody harmony
 
-```
-patch: 48
-```
+- patch 48
 
 1. -/1
 2. -
@@ -115,11 +102,9 @@ patch: 48
 12. ti/2 do/4 re
 13. mi/1
 
-### french horns
+## french horns
 
-```
-patch: 60
-```
+- patch 60
 
 1. -/1
 2. -
