@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+var score = require('./')
+  , fs = require('fs')
+  , assert = require('assert')
+
+fs.readFile(process.argv[2], function (err, data) {
+  assert.ifError(err);
+  var s = score.parse(data);
+  console.log(JSON.stringify(s, null, 2));
+});

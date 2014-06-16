@@ -1,0 +1,1236 @@
+{
+  "parts": [
+    {
+      "name": "guitar",
+      "measures": [
+        [
+          {
+            "type": "dynamics",
+            "value": "fff"
+          },
+          {
+            "type": "jump",
+            "value": -24
+          },
+          {
+            "type": "note",
+            "syllable": "do",
+            "duration": 2,
+            "dot": 2
+          },
+          {
+            "type": "note",
+            "syllable": "sol",
+            "duration": 8
+          }
+        ],
+        [
+          {
+            "type": "note",
+            "syllable": "la",
+            "duration": 2,
+            "dot": 2
+          },
+          {
+            "type": "note",
+            "syllable": "sol",
+            "duration": 8
+          }
+        ],
+        [
+          {
+            "type": "note",
+            "syllable": "do",
+            "duration": 2,
+            "dot": 2
+          },
+          {
+            "type": "note",
+            "syllable": "sol",
+            "duration": 8
+          }
+        ],
+        [
+          {
+            "type": "note",
+            "syllable": "la",
+            "duration": 2,
+            "dot": 2
+          },
+          {
+            "type": "note",
+            "syllable": "sol",
+            "duration": 8
+          }
+        ],
+        [
+          {
+            "type": "jump",
+            "value": 12
+          },
+          {
+            "type": "note",
+            "syllable": "fa",
+            "duration": 1,
+            "tie": true
+          }
+        ],
+        [
+          {
+            "type": "rest",
+            "duration": 2,
+            "dot": 1
+          },
+          {
+            "type": "note",
+            "syllable": "do",
+            "duration": 4
+          }
+        ],
+        [
+          {
+            "type": "note",
+            "syllable": "fa",
+            "duration": 1,
+            "tie": true
+          }
+        ],
+        [
+          {
+            "type": "rest",
+            "duration": 2,
+            "dot": 1
+          },
+          {
+            "type": "chord",
+            "events": [
+              {
+                "type": "note",
+                "syllable": "do"
+              },
+              {
+                "type": "note",
+                "syllable": "fa"
+              }
+            ],
+            "duration": 4
+          }
+        ],
+        [
+          {
+            "type": "chord",
+            "events": [
+              {
+                "type": "note",
+                "syllable": "re"
+              },
+              {
+                "type": "note",
+                "syllable": "sol"
+              }
+            ],
+            "duration": 1,
+            "tie": true
+          }
+        ],
+        [
+          {
+            "type": "rest",
+            "duration": 2,
+            "dot": 1
+          },
+          {
+            "type": "note",
+            "syllable": "re",
+            "duration": 4
+          }
+        ],
+        [
+          {
+            "type": "note",
+            "syllable": "sol",
+            "duration": 2
+          },
+          {
+            "type": "note",
+            "syllable": "re"
+          }
+        ],
+        [
+          {
+            "type": "jump",
+            "value": -12
+          },
+          {
+            "type": "note",
+            "syllable": "sol",
+            "duration": 1
+          }
+        ],
+        [
+          {
+            "type": "note",
+            "syllable": "do",
+            "duration": 1
+          }
+        ]
+      ],
+      "patch": 27
+    },
+    {
+      "name": "guitar double",
+      "measures": [
+        [
+          {
+            "type": "dynamics",
+            "value": "f"
+          },
+          {
+            "type": "jump",
+            "value": -24
+          },
+          {
+            "type": "note",
+            "syllable": "do",
+            "duration": 2,
+            "dot": 2
+          },
+          {
+            "type": "note",
+            "syllable": "sol",
+            "duration": 8
+          }
+        ],
+        [
+          {
+            "type": "note",
+            "syllable": "la",
+            "duration": 2,
+            "dot": 2
+          },
+          {
+            "type": "note",
+            "syllable": "sol",
+            "duration": 8
+          }
+        ],
+        [
+          {
+            "type": "note",
+            "syllable": "do",
+            "duration": 2,
+            "dot": 2
+          },
+          {
+            "type": "note",
+            "syllable": "sol",
+            "duration": 8
+          }
+        ],
+        [
+          {
+            "type": "note",
+            "syllable": "la",
+            "duration": 2,
+            "dot": 2
+          },
+          {
+            "type": "note",
+            "syllable": "sol",
+            "duration": 8
+          }
+        ],
+        [
+          {
+            "type": "jump",
+            "value": 12
+          },
+          {
+            "type": "note",
+            "syllable": "fa",
+            "duration": 1,
+            "tie": true
+          }
+        ],
+        [
+          {
+            "type": "rest",
+            "duration": 2,
+            "dot": 1
+          },
+          {
+            "type": "note",
+            "syllable": "do",
+            "duration": 4
+          }
+        ],
+        [
+          {
+            "type": "note",
+            "syllable": "fa",
+            "duration": 1,
+            "tie": true
+          }
+        ],
+        [
+          {
+            "type": "rest",
+            "duration": 2,
+            "dot": 1
+          },
+          {
+            "type": "chord",
+            "events": [
+              {
+                "type": "note",
+                "syllable": "do"
+              },
+              {
+                "type": "note",
+                "syllable": "fa"
+              }
+            ],
+            "duration": 4
+          }
+        ],
+        [
+          {
+            "type": "chord",
+            "events": [
+              {
+                "type": "note",
+                "syllable": "re"
+              },
+              {
+                "type": "note",
+                "syllable": "sol"
+              }
+            ],
+            "duration": 1,
+            "tie": true
+          }
+        ],
+        [
+          {
+            "type": "rest",
+            "duration": 2,
+            "dot": 1
+          },
+          {
+            "type": "note",
+            "syllable": "re",
+            "duration": 4
+          }
+        ],
+        [
+          {
+            "type": "note",
+            "syllable": "sol",
+            "duration": 2
+          },
+          {
+            "type": "note",
+            "syllable": "re"
+          }
+        ],
+        [
+          {
+            "type": "jump",
+            "value": -12
+          },
+          {
+            "type": "note",
+            "syllable": "sol",
+            "duration": 1
+          }
+        ],
+        [
+          {
+            "type": "note",
+            "syllable": "do",
+            "duration": 1
+          }
+        ]
+      ],
+      "patch": 88
+    },
+    {
+      "name": "electric piano",
+      "measures": [
+        [
+          {
+            "type": "rest"
+          },
+          {
+            "type": "dynamics",
+            "value": "mf"
+          },
+          {
+            "type": "sustain",
+            "value": true
+          },
+          {
+            "type": "chord",
+            "events": [
+              {
+                "type": "note",
+                "syllable": "re"
+              },
+              {
+                "type": "note",
+                "syllable": "mi"
+              },
+              {
+                "type": "note",
+                "syllable": "sol"
+              }
+            ],
+            "duration": 2
+          },
+          {
+            "type": "note",
+            "syllable": "do",
+            "duration": 4
+          },
+          {
+            "type": "sustain",
+            "value": false
+          }
+        ],
+        [
+          {
+            "type": "rest"
+          },
+          {
+            "type": "sustain",
+            "value": true
+          },
+          {
+            "type": "chord",
+            "events": [
+              {
+                "type": "note",
+                "syllable": "ti"
+              },
+              {
+                "type": "note",
+                "syllable": "do"
+              },
+              {
+                "type": "note",
+                "syllable": "mi"
+              }
+            ],
+            "duration": 2
+          },
+          {
+            "type": "note",
+            "syllable": "la",
+            "duration": 4
+          },
+          {
+            "type": "sustain",
+            "value": false
+          }
+        ],
+        [
+          {
+            "type": "rest"
+          },
+          {
+            "type": "sustain",
+            "value": true
+          },
+          {
+            "type": "chord",
+            "events": [
+              {
+                "type": "note",
+                "syllable": "re"
+              },
+              {
+                "type": "note",
+                "syllable": "mi"
+              },
+              {
+                "type": "note",
+                "syllable": "sol"
+              }
+            ],
+            "duration": 2
+          },
+          {
+            "type": "note",
+            "syllable": "do",
+            "duration": 4
+          },
+          {
+            "type": "sustain",
+            "value": false
+          }
+        ],
+        [
+          {
+            "type": "rest"
+          },
+          {
+            "type": "sustain",
+            "value": true
+          },
+          {
+            "type": "chord",
+            "events": [
+              {
+                "type": "note",
+                "syllable": "ti"
+              },
+              {
+                "type": "note",
+                "syllable": "do"
+              },
+              {
+                "type": "note",
+                "syllable": "mi"
+              }
+            ],
+            "duration": 2
+          },
+          {
+            "type": "note",
+            "syllable": "la",
+            "duration": 4
+          },
+          {
+            "type": "sustain",
+            "value": false
+          }
+        ]
+      ],
+      "patch": 4
+    },
+    {
+      "name": "string pad",
+      "measures": [
+        [
+          {
+            "type": "rest",
+            "duration": 1
+          }
+        ],
+        [
+          {
+            "type": "rest"
+          }
+        ],
+        [
+          {
+            "type": "rest"
+          }
+        ],
+        [
+          {
+            "type": "rest"
+          }
+        ],
+        [
+          {
+            "type": "dynamics",
+            "value": "mp"
+          },
+          {
+            "type": "jump",
+            "value": -36
+          },
+          {
+            "type": "chord",
+            "events": [
+              {
+                "type": "note",
+                "syllable": "fa"
+              },
+              {
+                "type": "jump",
+                "value": 12
+              },
+              {
+                "type": "note",
+                "syllable": "fa"
+              },
+              {
+                "type": "note",
+                "syllable": "do"
+              }
+            ],
+            "duration": 1,
+            "tie": true
+          }
+        ],
+        [
+          {
+            "type": "rest",
+            "duration": 1
+          }
+        ],
+        [
+          {
+            "type": "chord",
+            "events": [
+              {
+                "type": "note",
+                "syllable": "fa"
+              },
+              {
+                "type": "jump",
+                "value": 12
+              },
+              {
+                "type": "note",
+                "syllable": "do"
+              },
+              {
+                "type": "jump",
+                "value": 12
+              },
+              {
+                "type": "note",
+                "syllable": "fa"
+              },
+              {
+                "type": "jump",
+                "value": 12
+              },
+              {
+                "type": "note",
+                "syllable": "do"
+              }
+            ],
+            "duration": 1,
+            "tie": true
+          }
+        ],
+        [
+          {
+            "type": "rest",
+            "duration": 1
+          }
+        ],
+        [
+          {
+            "type": "dynamics",
+            "value": "f"
+          },
+          {
+            "type": "chord",
+            "events": [
+              {
+                "type": "note",
+                "syllable": "sol"
+              },
+              {
+                "type": "jump",
+                "value": 12
+              },
+              {
+                "type": "note",
+                "syllable": "re"
+              },
+              {
+                "type": "jump",
+                "value": 12
+              },
+              {
+                "type": "note",
+                "syllable": "sol"
+              },
+              {
+                "type": "jump",
+                "value": 12
+              },
+              {
+                "type": "note",
+                "syllable": "re"
+              }
+            ],
+            "duration": 1,
+            "tie": true
+          }
+        ],
+        [
+          {
+            "type": "rest",
+            "duration": 1
+          }
+        ],
+        [
+          {
+            "type": "dynamics",
+            "value": "ff"
+          },
+          {
+            "type": "chord",
+            "events": [
+              {
+                "type": "note",
+                "syllable": "sol"
+              },
+              {
+                "type": "jump",
+                "value": 12
+              },
+              {
+                "type": "note",
+                "syllable": "sol"
+              },
+              {
+                "type": "note",
+                "syllable": "ti"
+              },
+              {
+                "type": "note",
+                "syllable": "re"
+              }
+            ],
+            "duration": 1,
+            "tie": true
+          }
+        ],
+        [
+          {
+            "type": "rest",
+            "duration": 1
+          }
+        ],
+        [
+          {
+            "type": "dynamics",
+            "value": "mf"
+          },
+          {
+            "type": "chord",
+            "events": [
+              {
+                "type": "note",
+                "syllable": "do"
+              },
+              {
+                "type": "jump",
+                "value": 12
+              },
+              {
+                "type": "note",
+                "syllable": "sol"
+              },
+              {
+                "type": "jump",
+                "value": 12
+              },
+              {
+                "type": "note",
+                "syllable": "re"
+              }
+            ],
+            "duration": 1
+          }
+        ]
+      ],
+      "patch": 48
+    },
+    {
+      "name": "string melody",
+      "measures": [
+        [
+          {
+            "type": "rest",
+            "duration": 1
+          }
+        ],
+        [
+          {
+            "type": "rest"
+          }
+        ],
+        [
+          {
+            "type": "rest"
+          }
+        ],
+        [
+          {
+            "type": "rest"
+          }
+        ],
+        [
+          {
+            "type": "dynamics",
+            "value": "f"
+          },
+          {
+            "type": "note",
+            "syllable": "sol",
+            "duration": 4,
+            "dot": 1
+          },
+          {
+            "type": "note",
+            "syllable": "la",
+            "duration": 8,
+            "tie": true
+          },
+          {
+            "type": "rest",
+            "duration": 2
+          }
+        ],
+        [
+          {
+            "type": "note",
+            "syllable": "ti",
+            "duration": 4,
+            "dot": 1
+          },
+          {
+            "type": "note",
+            "syllable": "do",
+            "duration": 8,
+            "tie": true
+          },
+          {
+            "type": "rest",
+            "duration": 2
+          }
+        ],
+        [
+          {
+            "type": "note",
+            "syllable": "sol",
+            "duration": 4,
+            "dot": 1
+          },
+          {
+            "type": "note",
+            "syllable": "la",
+            "duration": 8,
+            "tie": true
+          },
+          {
+            "type": "rest",
+            "duration": 2
+          }
+        ],
+        [
+          {
+            "type": "note",
+            "syllable": "ti",
+            "duration": 4,
+            "dot": 1
+          },
+          {
+            "type": "note",
+            "syllable": "do",
+            "duration": 8,
+            "tie": true
+          },
+          {
+            "type": "rest",
+            "duration": 2
+          }
+        ],
+        [
+          {
+            "type": "dynamics",
+            "value": "ff"
+          },
+          {
+            "type": "note",
+            "syllable": "la",
+            "duration": 4,
+            "dot": 1
+          },
+          {
+            "type": "note",
+            "syllable": "ti",
+            "duration": 8,
+            "tie": true
+          },
+          {
+            "type": "rest",
+            "duration": 2
+          }
+        ],
+        [
+          {
+            "type": "note",
+            "syllable": "do",
+            "duration": 4,
+            "dot": 1
+          },
+          {
+            "type": "note",
+            "syllable": "re",
+            "duration": 8,
+            "tie": true
+          },
+          {
+            "type": "rest",
+            "duration": 2
+          }
+        ],
+        [
+          {
+            "type": "dynamics",
+            "value": "fff"
+          },
+          {
+            "type": "note",
+            "syllable": "ti",
+            "duration": 4,
+            "dot": 1
+          },
+          {
+            "type": "note",
+            "syllable": "do",
+            "duration": 8,
+            "tie": true
+          },
+          {
+            "type": "rest",
+            "duration": 2
+          }
+        ],
+        [
+          {
+            "type": "note",
+            "syllable": "re",
+            "duration": 2
+          },
+          {
+            "type": "note",
+            "syllable": "mi",
+            "duration": 4
+          },
+          {
+            "type": "note",
+            "syllable": "fa"
+          }
+        ],
+        [
+          {
+            "type": "note",
+            "syllable": "sol",
+            "duration": 1
+          }
+        ]
+      ],
+      "patch": 49
+    },
+    {
+      "name": "melody harmony",
+      "measures": [
+        [
+          {
+            "type": "rest",
+            "duration": 1
+          }
+        ],
+        [
+          {
+            "type": "rest"
+          }
+        ],
+        [
+          {
+            "type": "rest"
+          }
+        ],
+        [
+          {
+            "type": "rest"
+          }
+        ],
+        [
+          {
+            "type": "dynamics",
+            "value": "f"
+          },
+          {
+            "type": "note",
+            "syllable": "sol",
+            "duration": 4,
+            "dot": 1
+          },
+          {
+            "type": "note",
+            "syllable": "la",
+            "duration": 8,
+            "tie": true
+          },
+          {
+            "type": "rest",
+            "duration": 2
+          }
+        ],
+        [
+          {
+            "type": "note",
+            "syllable": "ti",
+            "duration": 4,
+            "dot": 1
+          },
+          {
+            "type": "note",
+            "syllable": "do",
+            "duration": 8,
+            "tie": true
+          },
+          {
+            "type": "rest",
+            "duration": 2
+          }
+        ],
+        [
+          {
+            "type": "note",
+            "syllable": "sol",
+            "duration": 4,
+            "dot": 1
+          },
+          {
+            "type": "note",
+            "syllable": "la",
+            "duration": 8,
+            "tie": true
+          },
+          {
+            "type": "rest",
+            "duration": 2
+          }
+        ],
+        [
+          {
+            "type": "note",
+            "syllable": "ti",
+            "duration": 4,
+            "dot": 1
+          },
+          {
+            "type": "note",
+            "syllable": "do",
+            "duration": 8,
+            "tie": true
+          },
+          {
+            "type": "rest",
+            "duration": 2
+          }
+        ],
+        [
+          {
+            "type": "dynamics",
+            "value": "ff"
+          },
+          {
+            "type": "note",
+            "syllable": "la",
+            "duration": 4,
+            "dot": 1
+          },
+          {
+            "type": "note",
+            "syllable": "ti",
+            "duration": 8,
+            "tie": true
+          },
+          {
+            "type": "rest",
+            "duration": 2
+          }
+        ],
+        [
+          {
+            "type": "note",
+            "syllable": "la",
+            "duration": 4,
+            "dot": 1
+          },
+          {
+            "type": "note",
+            "syllable": "ti",
+            "duration": 8,
+            "tie": true
+          },
+          {
+            "type": "rest",
+            "duration": 2
+          }
+        ],
+        [
+          {
+            "type": "dynamics",
+            "value": "fff"
+          },
+          {
+            "type": "note",
+            "syllable": "sol",
+            "duration": 4,
+            "dot": 1
+          },
+          {
+            "type": "note",
+            "syllable": "la",
+            "duration": 8,
+            "tie": true
+          },
+          {
+            "type": "rest",
+            "duration": 2
+          }
+        ],
+        [
+          {
+            "type": "note",
+            "syllable": "ti",
+            "duration": 2
+          },
+          {
+            "type": "note",
+            "syllable": "do",
+            "duration": 4
+          },
+          {
+            "type": "note",
+            "syllable": "re"
+          }
+        ],
+        [
+          {
+            "type": "note",
+            "syllable": "mi",
+            "duration": 1
+          }
+        ]
+      ],
+      "patch": 48
+    },
+    {
+      "name": "french horns",
+      "measures": [
+        [
+          {
+            "type": "rest",
+            "duration": 1
+          }
+        ],
+        [
+          {
+            "type": "rest"
+          }
+        ],
+        [
+          {
+            "type": "rest"
+          }
+        ],
+        [
+          {
+            "type": "rest"
+          }
+        ],
+        [
+          {
+            "type": "jump",
+            "value": -12
+          },
+          {
+            "type": "note",
+            "syllable": "fa",
+            "duration": 1,
+            "tie": true
+          }
+        ],
+        [
+          {
+            "type": "rest",
+            "duration": 2,
+            "dot": 1
+          },
+          {
+            "type": "note",
+            "syllable": "do",
+            "duration": 4
+          }
+        ],
+        [
+          {
+            "type": "note",
+            "syllable": "fa",
+            "duration": 1,
+            "tie": true
+          }
+        ],
+        [
+          {
+            "type": "rest",
+            "duration": 2,
+            "dot": 1
+          },
+          {
+            "type": "note",
+            "syllable": "re",
+            "duration": 4
+          }
+        ],
+        [
+          {
+            "type": "note",
+            "syllable": "sol",
+            "duration": 1,
+            "tie": true
+          }
+        ],
+        [
+          {
+            "type": "rest",
+            "duration": 2,
+            "dot": 1
+          },
+          {
+            "type": "note",
+            "syllable": "re",
+            "duration": 4
+          }
+        ],
+        [
+          {
+            "type": "note",
+            "syllable": "sol",
+            "duration": 1,
+            "tie": true
+          }
+        ],
+        [
+          {
+            "type": "rest",
+            "duration": 2,
+            "dot": 1
+          },
+          {
+            "type": "note",
+            "syllable": "sol",
+            "duration": 4
+          }
+        ],
+        [
+          {
+            "type": "note",
+            "syllable": "mi",
+            "duration": 1
+          }
+        ]
+      ],
+      "patch": 60
+    }
+  ],
+  "title": "Twin Peaks",
+  "key": "fa",
+  "bpm": 74
+}

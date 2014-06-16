@@ -18,6 +18,8 @@ exports.parse = function (str) {
   parseMeta(ret);
   ret.parts.forEach(parseMeta);
 
+  console.error(JSON.stringify(ret, null, 2));
+
   return ret;
 };
 
